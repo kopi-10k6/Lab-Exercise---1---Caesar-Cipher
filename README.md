@@ -12,6 +12,34 @@ Step 3:
 4. Encryption of a letter x by a shift n can be described mathematically as, En(x) = (x + n)mod26
 5. 1 Decryption is performed similarly, Dn (x)=(x - n) mod26
 
+## program:
+```
+def caesar_cipher(text, shift):
+    result = ""
+
+    for char in text:
+        if char.isupper():
+            result += chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+        elif char.islower():
+            result += chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+        else:
+            result += char # Keep spaces, numbers, and punctuation unchanged
+
+    return result
+
+
+choice = input("Encrypt or decrypt? (e/d): ").lower()
+message = input("Enter your message: ")
+shift = int(input("Enter shift value: ")) % 26
+
+if choice == "d":
+    shift = -shift
+elif choice != "e":
+    print("Invalid choice.")
+    raise SystemExit
+
+print("Result:", caesar_cipher(message, shift))
+```
 ## output:
 ![alt text](image.png)
 ## Result:
